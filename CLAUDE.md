@@ -111,13 +111,15 @@ Sent to the backend as an array of objects:
 ]
 ```
 
-### Registration & Payment
+### Registration
 
 | Field               | Type   | Required |
 |---------------------|--------|----------|
 | registrationType    | enum   | yes (`author_academic_manager` / `student`) |
 | registrationPeriod  | enum   | yes (`early` / `late`) — determines fee |
 | paymentMethod       | enum   | yes (`bank_transfer` / `paypal`) |
+
+> **Website:** no payment choice or payment details are shown on the page or the PDF. The website always sends `paymentMethod: "bank_transfer"` so backend validation (unchanged) still passes.
 
 ### Invoicing
 

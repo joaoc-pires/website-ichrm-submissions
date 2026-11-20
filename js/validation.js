@@ -11,7 +11,6 @@ const REQUIRED_FIELDS = {
   phone: 'Phone',
   academicDegree: 'Academic degree',
   registrationType: 'Registration type',
-  paymentMethod: 'Payment method',
   invoiceName: 'Invoice name',
   invoiceAddress: 'Invoice address',
   invoiceCountryCity: 'Invoice country, city and zip code',
@@ -19,16 +18,6 @@ const REQUIRED_FIELDS = {
 
 export function validateForm(data, paperFile) {
   const errors = [];
-
-  for (const [field, label] of Object.entries(REQUIRED_FIELDS)) {
-    if (!data[field]?.toString().trim()) {
-      errors.push(`${label} is required.`);
-    }
-  }
-
-  if (data.email && !EMAIL_RE.test(data.email)) {
-    errors.push('Please enter a valid email address.');
-  }
 
   if (data.isAuthor) {
     if (!data.paperTitle?.trim()) errors.push('Paper title is required for authors.');
@@ -53,6 +42,16 @@ export function validateForm(data, paperFile) {
     } else if (!isDocx(paperFile)) {
       errors.push('Paper must be a DOCX file.');
     }
+  }
+
+  for (const [field, label] of Object.entries(REQUIRED_FIELDS)) {
+    if (!data[field]?.toString().trim()) {
+      errors.push(`${label} is required.`);
+    }
+  }
+
+  if (data.email && !EMAIL_RE.test(data.email)) {
+    errors.push('Please enter a valid email address.');
   }
 
   return errors;

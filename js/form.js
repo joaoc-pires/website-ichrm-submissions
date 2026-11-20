@@ -53,10 +53,6 @@ const REGISTRATION_TYPE_LABELS = {
   author_academic_manager: 'Author, academic or manager',
   student: 'Undergraduate, master or doctoral student',
 };
-const PAYMENT_METHOD_LABELS = {
-  bank_transfer: 'Bank Transfer',
-  paypal: 'PayPal',
-};
 const FORMAT_LABELS = {
   onsite: 'Onsite',
   online: 'Online',
@@ -75,12 +71,9 @@ function populatePrintSummary(data, applicationId) {
   document.getElementById('p-email').textContent         = data.email;
   document.getElementById('p-phone').textContent         = data.phone;
   document.getElementById('p-academicDegree').textContent = data.academicDegree;
-  document.getElementById('p-isAuthor').textContent      = data.isAuthor ? 'Yes' : 'No';
+  document.getElementById('p-isAuthor').textContent      = data.isAuthor ? 'Yes' : 'No, I wish to attend only as a participant';
   document.getElementById('p-registrationType').textContent = REGISTRATION_TYPE_LABELS[data.registrationType] ?? data.registrationType;
   document.getElementById('p-fee').textContent           = fee ? `€${fee} (${period === 'early' ? 'Early' : 'Standard'} registration)` : '—';
-  document.getElementById('p-paymentMethod').textContent = PAYMENT_METHOD_LABELS[data.paymentMethod] ?? data.paymentMethod;
-  document.getElementById('p-bankInfo').hidden   = data.paymentMethod !== 'bank_transfer';
-  document.getElementById('p-paypalInfo').hidden = data.paymentMethod !== 'paypal';
   document.getElementById('p-invoiceName').textContent   = data.invoiceName;
   document.getElementById('p-invoiceAddress').textContent    = data.invoiceAddress;
   document.getElementById('p-invoiceCountryCity').textContent = data.invoiceCountryCity;
@@ -183,8 +176,6 @@ const paperError    = document.getElementById('paperError');
 const feeDisplay    = document.getElementById('feeDisplay');
 const feeAmount     = document.getElementById('feeAmount');
 const feePeriod     = document.getElementById('feePeriod');
-const bankInfo      = document.getElementById('bankInfo');
-const paypalInfo    = document.getElementById('paypalInfo');
 const submitBtn     = document.getElementById('submitBtn');
 const formErrors    = document.getElementById('formErrors');
 const successPanel  = document.getElementById('successPanel');
@@ -243,15 +234,6 @@ document.querySelectorAll('input[type="radio"][name="registrationType"]').forEac
   radio.addEventListener('change', updateFee);
 });
 
-// Payment method info toggle
-document.querySelectorAll('input[type="radio"][name="paymentMethod"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    const val = getRadioValue('paymentMethod');
-    bankInfo.hidden   = val !== 'bank_transfer';
-    paypalInfo.hidden = val !== 'paypal';
-  });
-});
-
 // Form submission
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -270,7 +252,7 @@ form.addEventListener('submit', async (e) => {
     presentationFormat: getRadioValue('presentationFormat'),
     registrationType:   getRadioValue('registrationType'),
     registrationPeriod: getRegistrationPeriod(),
-    paymentMethod:      getRadioValue('paymentMethod'),
+    paymentMethod:      'bank_transfer', // fixed: no payment choice on the website; backend requires it
     invoiceName:        getFieldValue('invoiceName'),
     vatNumber:          getFieldValue('vatNumber'),
     invoiceAddress:     getFieldValue('invoiceAddress'),

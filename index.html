@@ -30,65 +30,19 @@
 
     <form id="registrationForm" novalidate>
 
-      <!-- 1. Participant Identification -->
+      <!-- 1. Submission -->
       <section class="form-card">
-        <h2 class="form-card__title">Participant Identification</h2>
-
-        <div class="field-row">
-          <div class="text-field">
-            <input id="name" name="name" type="text" placeholder=" " required>
-            <label for="name">Full Name</label>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="text-field">
-            <input id="institution" name="institution" type="text" placeholder=" " required>
-            <label for="institution">Institution / Affiliation</label>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="text-field">
-            <input id="address" name="address" type="text" placeholder=" " required>
-            <label for="address">Address</label>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="text-field">
-            <input id="countryCity" name="countryCity" type="text" placeholder=" " required>
-            <label for="countryCity">Country, City and Zip Code</label>
-          </div>
-        </div>
-        <div class="field-row field-row--two">
-          <div class="text-field">
-            <input id="email" name="email" type="email" placeholder=" " required>
-            <label for="email">Email</label>
-          </div>
-          <div class="text-field">
-            <input id="phone" name="phone" type="tel" placeholder=" " required>
-            <label for="phone">Phone</label>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="text-field">
-            <input id="academicDegree" name="academicDegree" type="text" placeholder=" " required>
-            <label for="academicDegree">Academic Degree</label>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. Conference Participation -->
-      <section class="form-card">
-        <h2 class="form-card__title">Conference Participation</h2>
+        <h2 class="form-card__title">Submission</h2>
 
         <div class="radio-group">
-          <p class="radio-group__label">Are you attending as a presenting author?</p>
+          <p class="radio-group__label">Do you wish to submit a paper to the conference?</p>
           <label class="radio-label">
             <input type="radio" name="isAuthor" value="yes">
             <span>Yes</span>
           </label>
           <label class="radio-label">
             <input type="radio" name="isAuthor" value="no">
-            <span>No</span>
+            <span>No, I wish to attend only as a participant</span>
           </label>
         </div>
 
@@ -134,9 +88,55 @@
         </div>
       </section>
 
-      <!-- 3. Registration & Payment -->
+      <!-- 2. Participant Identification -->
       <section class="form-card">
-        <h2 class="form-card__title">Registration &amp; Payment</h2>
+        <h2 class="form-card__title">Participant Identification</h2>
+
+        <div class="field-row">
+          <div class="text-field">
+            <input id="name" name="name" type="text" placeholder=" " required>
+            <label for="name">Full Name</label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="text-field">
+            <input id="institution" name="institution" type="text" placeholder=" " required>
+            <label for="institution">Institution / Affiliation</label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="text-field">
+            <input id="address" name="address" type="text" placeholder=" " required>
+            <label for="address">Address</label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="text-field">
+            <input id="countryCity" name="countryCity" type="text" placeholder=" " required>
+            <label for="countryCity">Country, City and Zip Code</label>
+          </div>
+        </div>
+        <div class="field-row field-row--two">
+          <div class="text-field">
+            <input id="email" name="email" type="email" placeholder=" " required>
+            <label for="email">Email</label>
+          </div>
+          <div class="text-field">
+            <input id="phone" name="phone" type="tel" placeholder=" " required>
+            <label for="phone">Phone</label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="text-field">
+            <input id="academicDegree" name="academicDegree" type="text" placeholder=" " required>
+            <label for="academicDegree">Academic Degree</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Registration -->
+      <section class="form-card">
+        <h2 class="form-card__title">Registration</h2>
 
         <div class="radio-group">
           <p class="radio-group__label">Registration Type</p>
@@ -155,33 +155,6 @@
           <span class="fee-display__amount" id="feeAmount"></span>
           <span class="fee-display__period" id="feePeriod"></span>
         </div>
-
-        <hr class="section-divider">
-
-        <div class="radio-group">
-          <p class="radio-group__label">Payment Method</p>
-          <label class="radio-label">
-            <input type="radio" name="paymentMethod" value="bank_transfer">
-            <span>Bank Transfer</span>
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="paymentMethod" value="paypal">
-            <span>PayPal</span>
-          </label>
-        </div>
-
-        <div id="bankInfo" class="payment-info" hidden>
-          <p><strong>IBAN:</strong> 0035 0371 0000 4045 1307 9</p>
-          <p><strong>BIC / SWIFT:</strong> CGDIPTPL</p>
-        </div>
-        <div id="paypalInfo" class="payment-info" hidden>
-          <p><strong>PayPal:</strong> geral@advance.iseg.ulisboa.pt</p>
-        </div>
-        <p class="payment-note">
-          Please send proof of payment to
-          <a href="mailto:geral@advance.iseg.ulisboa.pt">geral@advance.iseg.ulisboa.pt</a>
-          together with this registration form.
-        </p>
       </section>
 
       <!-- 4. Invoicing -->
@@ -226,11 +199,7 @@
     <div id="successPanel" class="success-panel" hidden>
       <div class="success-panel__icon" aria-hidden="true">✓</div>
       <h2>Registration Submitted</h2>
-      <p>
-        Thank you for your registration. Please save this form as a PDF and send it
-        together with your proof of payment to
-        <a href="mailto:geral@advance.iseg.ulisboa.pt">geral@advance.iseg.ulisboa.pt</a>.
-      </p>
+      <p>Thank you for your registration.</p>
       <p class="success-panel__id">Submission ID: <strong id="submissionId"></strong></p>
       <button type="button" class="btn-filled" id="savePdfBtn">Save as PDF</button>
     </div>
@@ -263,7 +232,7 @@
       <div class="print-section">
         <h3>Conference Participation</h3>
         <dl>
-          <div class="print-row"><dt>Presenting Author</dt><dd id="p-isAuthor"></dd></div>
+          <div class="print-row"><dt>Do you wish to submit a paper to the conference?</dt><dd id="p-isAuthor"></dd></div>
           <div class="print-row" id="p-row-paperTitle"><dt>Paper Title</dt><dd id="p-paperTitle"></dd></div>
           <div id="p-authors-container"></div>
           <div class="print-row" id="p-row-presentationFormat"><dt>Presentation Format</dt><dd id="p-presentationFormat"></dd></div>
@@ -271,18 +240,10 @@
       </div>
 
       <div class="print-section">
-        <h3>Registration &amp; Payment</h3>
+        <h3>Registration</h3>
         <dl>
           <div class="print-row"><dt>Registration Type</dt><dd id="p-registrationType"></dd></div>
           <div class="print-row"><dt>Registration Fee</dt><dd id="p-fee"></dd></div>
-          <div class="print-row"><dt>Payment Method</dt><dd id="p-paymentMethod"></dd></div>
-          <div id="p-bankInfo" hidden>
-            <div class="print-row"><dt>IBAN</dt><dd>0035 0371 0000 4045 1307 9</dd></div>
-            <div class="print-row"><dt>BIC / SWIFT</dt><dd>CGDIPTPL</dd></div>
-          </div>
-          <div id="p-paypalInfo" hidden>
-            <div class="print-row"><dt>PayPal</dt><dd>geral@advance.iseg.ulisboa.pt</dd></div>
-          </div>
         </dl>
       </div>
 
@@ -294,10 +255,6 @@
           <div class="print-row"><dt>Address</dt><dd id="p-invoiceAddress"></dd></div>
           <div class="print-row"><dt>Country, City, Zip</dt><dd id="p-invoiceCountryCity"></dd></div>
         </dl>
-      </div>
-
-      <div class="print-footer">
-        <p>Please send this form together with your proof of payment to <strong>geral@advance.iseg.ulisboa.pt</strong>.</p>
       </div>
     </div>
 
